@@ -15,7 +15,6 @@ Description : Ms Pacman AI based on the T-Rex evolutionary neural network
 import gymnasium as gym
 import math
 import array
-import sys
 
 from ctypes import *
 so_file = "/usr/local/lib/libT-Rex.so"
@@ -35,7 +34,6 @@ BITS_PER_ACTION = 4
 NEURAL_NETWORK_NUMBER_OF_INPUTS = RAM_BITS
 NEURAL_NETWORK_NUMBER_OF_HIDDEN_LAYERS = 2
 NEURAL_NETWORK_NUMBER_OF_OUTPUTS = BITS_PER_ACTION
-NEURAL_NETWORK_PERCENTAGE_OF_MASSIVE_MUTATIONS = 1
 
 #Number of consecutive victories to consider the training completed
 MAX_CONSECUTIVE_VICTORIES = NEURAL_NETWORK_NUMBER_OF_INPUTS * NEURAL_NETWORK_NUMBER_OF_HIDDEN_LAYERS + NEURAL_NETWORK_NUMBER_OF_OUTPUTS
@@ -48,6 +46,7 @@ NEURAL_NETWORK_FILE_PATH = create_string_buffer(str.encode("neural_network.json"
 action = env.action_space.sample() 
 
 def computeNeuralNetworkInput(myObservation, myNeuralNetwork):
+
 	bitArray = array.array('B',(0 for i in range(0, NEURAL_NETWORK_NUMBER_OF_INPUTS)))
 
 	returnValue = 0
@@ -186,7 +185,7 @@ print("----- FINAL GAME -----")
 
 env = gym.make("ALE/MsPacman-v5", repeat_action_probability=0, render_mode="human", obs_type="ram")
 
-observation = env.reset()
+observation, info = env.reset()
 
 while returnValue==0:
 	c_ubyte_p = POINTER(c_ubyte)
