@@ -88,7 +88,7 @@ def parseNeuralNetworkOutput(neuralNetworkOutput, numberOfOutputs):
 		neuralNetworkOutputIndex += 1
 
 	if action > 8:
-		action = 8
+		action = 0
 	
 	return action			
 
@@ -180,40 +180,33 @@ if returnValue==0:
 if returnValue==0 and not neuralNetworkFileFound:
 	returnValue = tRex.saveNeuralNetwork(NEURAL_NETWORK_FILE_PATH, bestNeuralNetwork)
 
-observation = env.reset()
 reward = 0;
 
 print("----- FINAL GAME -----")
 
 env = gym.make("ALE/MsPacman-v5", repeat_action_probability=0, render_mode="human", obs_type="ram")
 
+observation = env.reset()
+
 while returnValue==0:
-	c_int_p = POINTER(c_int)
-	myOutputArray = c_int_p()
+	c_ubyte_p = POINTER(c_ubyte)
+	myOutputArray = c_ubyte_p()
 	myOutputArraySize = c_int()
-	repeatAction = False
 		
 	#print(observation)
-	
-	if not repeatAction:
-		repeatAction = True	
 
-		returnValue = computeNeuralNetworkInput(observation, bestNeuralNetwork)
+	returnValue = computeNeuralNetworkInput(observation, bestNeuralNetwork)
 
-		if returnValue==0:
-			returnValue = tRex.computeNeuralNetworkOutput(bestNeuralNetwork, byref(myOutputArray), byref(myOutputArraySize))
+	if returnValue==0:
+		returnValue = tRex.computeNeuralNetworkOutput(bestNeuralNetwork, byref(myOutputArray), byref(myOutputArraySize))
 
-		if returnValue==0 and myOutputArraySize.value!=NEURAL_NETWORK_NUMBER_OF_OUTPUTS:
-			returnValue = NEURAL_NETWORK_ERROR_CODE
+	if returnValue==0 and myOutputArraySize.value!=NEURAL_NETWORK_NUMBER_OF_OUTPUTS:
+		returnValue = NEURAL_NETWORK_ERROR_CODE
 
-		if returnValue==0:
-			action = parseNeuralNetworkOutput(myOutputArray, myOutputArraySize.value)
-		
-	else:
-		repeatAction = False		
+	if returnValue==0:
+		action = parseNeuralNetworkOutput(myOutputArray, myOutputArraySize.value)
 		
 	observation, newReward, terminated, truncated, info =  env.step(action)
-	env.render()
 
 	reward += newReward
 
