@@ -1,10 +1,10 @@
 '''
 =====================================================================================
-Name        : Ms Pacman AI
+Name        : Ms. Pac-Man AI
 Author      : Kenshiro
 Version     : 1.00
 Copyright   : GNU General Public License (GPLv3)
-Description : Ms Pacman AI based on the T-Rex evolutionary neural network
+Description : Ms. Pac-Man AI based on the T-Rex evolutionary neural network
 =====================================================================================
 '''
 
