@@ -81,7 +81,7 @@ $ pip3 install gymnasium[atari]
 Run this command to install AutoROM and download the ROMs:
 
 ```
-pip3 install gymnasium[accept-rom-license]
+$ pip3 install gymnasium[accept-rom-license]
 ```
 
 ## Running
