@@ -23,7 +23,7 @@ Main features:
 
 ### Input layer
 
-The input of the neural network is the state of the 128 bytes of RAM of the console. The input layer has 1024 neurons.
+The input of the neural network is the state of the 128 bytes of RAM of the Atari 2600. The input layer has 1024 neurons.
 
 ### Hidden layer
 
@@ -72,10 +72,16 @@ $ sudo apt install python3-dev python3-pip python3-wheel
 
 ### Gymnasium
 
-Run this command to install Gymnasium with the Atari dependencies:
+Run this command to install Gymnasium with the Atari 2600 dependencies:
 
 ```
 $ pip3 install gymnasium[atari]
+```
+
+Run this command to install AutoROM and download the ROMs:
+
+```
+pip3 install gymnasium[accept-rom-license]
 ```
 
 ## Running
