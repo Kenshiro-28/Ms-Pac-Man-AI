@@ -1,5 +1,9 @@
 # Ms. Pac-Man AI
 
+<p align="center" width="100%">
+    <img width="25%" src="ms_pacman.gif"> 
+</p>
+
 This is a Ms. Pac-Man artificial intelligence based on the T-Rex evolutionary neural network. It trains playing the game until it's unable to improve its best score. After completing the training, the program plays a last game rendering the game screen.
 
 ## Game information
