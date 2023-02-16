@@ -54,7 +54,7 @@ def computeNeuralNetworkInput(myObservation, myNeuralNetwork):
 	neuralNetworkInputIndex = 0
 
 	for i in range(0, RAM_BYTES):
-		for j in range (0, 7):
+		for j in range (0, 8):
 
 			bit = myObservation[i] >> j;
 
