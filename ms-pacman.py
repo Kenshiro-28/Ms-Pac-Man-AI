@@ -32,7 +32,7 @@ BITS_PER_ACTION = 4
 
 #NEURAL NETWORK DATA
 NEURAL_NETWORK_NUMBER_OF_INPUTS = RAM_BITS
-NEURAL_NETWORK_NUMBER_OF_HIDDEN_LAYERS = 2
+NEURAL_NETWORK_NUMBER_OF_HIDDEN_LAYERS = 1
 NEURAL_NETWORK_NUMBER_OF_OUTPUTS = BITS_PER_ACTION
 
 #Number of consecutive victories to consider the training completed
@@ -141,7 +141,8 @@ while consecutiveVictories < MAX_CONSECUTIVE_VICTORIES and returnValue==0 and no
 
 		observation, newReward, terminated, truncated, info =  env.step(action)		
 
-		reward += newReward
+		#+1 for staying alive.
+		reward += newReward + 1
 
 		print("Reward:", reward)
 		print("Best reward:", bestReward)
