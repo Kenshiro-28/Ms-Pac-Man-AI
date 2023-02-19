@@ -29,6 +29,7 @@ RAM_BITS = RAM_BYTES * 8
 
 #ACTION DATA
 BITS_PER_ACTION = 4
+STAYING_ALIVE_REWARD = 0.00001
 
 #NEURAL NETWORK DATA
 NEURAL_NETWORK_NUMBER_OF_INPUTS = RAM_BITS
@@ -141,11 +142,11 @@ while consecutiveVictories < MAX_CONSECUTIVE_VICTORIES and returnValue==0 and no
 
 		observation, newReward, terminated, truncated, info =  env.step(action)		
 
-		#+1 for staying alive.
-		reward += newReward + 1
+		#+0.00001 for staying alive.
+		reward += newReward + STAYING_ALIVE_REWARD
 
-		print("Reward:", reward)
-		print("Best reward:", bestReward)
+		print("Reward:", f'{reward:.5f}')
+		print("Best reward:", f'{bestReward:.5f}')
 		print("Action:", action)
 		print("Episode:", episode)
 
@@ -210,7 +211,7 @@ while returnValue==0:
 
 	reward += newReward
 
-	print("Reward:", reward)
+	print("Reward:", f'{reward:.5f}')
 	print("Action:", action)
 
 	if terminated or truncated:
