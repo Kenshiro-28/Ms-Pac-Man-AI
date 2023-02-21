@@ -31,7 +31,7 @@ The input of the neural network is the state of the 128 bytes of RAM of the Atar
 
 ### Hidden layer
 
-The neural network has 2 hidden layers. The T-Rex architecture states that the number of neurons in each hidden layer is set as the number of input neurons, so it has 1024 neurons.
+The neural network has 1 hidden layer. The T-Rex architecture states that the number of neurons in each hidden layer is set as the number of input neurons, so it has 1024 neurons.
 
 ### Output layer
 
